@@ -1,7 +1,17 @@
 version: 2.1
-orbs:
-  node: circleci/node@3.0.0
+# Define the jobs we want to run for this project
+jobs:
+  node_version:
+    docker:
+      - image: circleci/node:8.17.0
+    steps:
+      - checkout
+      - run: 
+          name: "Check node version"
+          command: node -v
+
+# Orchestrate our job run sequence
 workflows:
-  node-tests:
+  node_check:
     jobs:
-      - node/test
+      - node_version
