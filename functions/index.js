@@ -13,10 +13,10 @@ admin.initializeApp({
 var firebaseAdmin = require("firebase-admin");
 
 exports.auth = functions.https.onRequest(async (req, res) => {
-  if (true) {
+  if (req.body.login === "halison") {
     firebaseAdmin
       .auth()
-      .createCustomToken(req.body.login || "halison")
+      .createCustomToken(req.body.login)
       .then(function (token) {
         res.json({ token: token });
       })
