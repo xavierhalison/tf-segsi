@@ -13,17 +13,15 @@ admin.initializeApp({
 var firebaseAdmin = require("firebase-admin");
 
 exports.auth = functions.https.onRequest(async (req, res) => {
-  if (req.body.login === "halison") {
+  if (true) {
     firebaseAdmin
       .auth()
-      .createCustomToken(req.body.login)
+      .createCustomToken(req.body.login || "halison")
       .then(function (token) {
         res.json({ token: token });
       })
       .catch(function (error) {
         res.status(500).json({ message: "Error during token creation", error });
       });
-  } else {
-    res.status(500).json({ message: "Error during token creation", error });
   }
 });
