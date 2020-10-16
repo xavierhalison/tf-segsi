@@ -12,10 +12,12 @@ const functions = require('firebase-functions');
 
 var serviceAccount = require("./xavier-ddf46-firebase-adminsdk-lnpmi-7143b648d3.json");
 
+
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
   databaseURL: "https://xavier-ddf46.firebaseio.com",
 });
+
 
 app.post("/token", (req, res) => {
   if (true) {
