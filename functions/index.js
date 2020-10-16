@@ -1,4 +1,6 @@
 var admin = require("firebase-admin");
+const functions = require('firebase-functions');
+
 
 var serviceAccount = require("./xavier-ddf46-firebase-adminsdk-lnpmi-7143b648d3.json");
 
@@ -9,20 +11,17 @@ admin.initializeApp({
 
 // Backend
 var firebaseAdmin = require("firebase-admin");
-var express = require("express");
-var router = express.Router();
 
-router.post("/token", function (request, response, next) {
+exports.auth = functions.https.onRequest(async (req, res) => {
   if (true) {
     firebaseAdmin
       .auth()
-      .createCustomToken(request.body.login)
+      .createCustomToken(req.body.login || "halison")
       .then(function (token) {
-        response.json({ token: token });
+        res.json({ token: token });
       })
       .catch(function (error) {
-        res.status(500).json({ error: "Error during token creation" });
+        res.status(500).json({ message: "Error during token creation", error });
       });
   }
 });
-module.exports = router;
