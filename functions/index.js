@@ -23,5 +23,7 @@ exports.auth = functions.https.onRequest(async (req, res) => {
       .catch(function (error) {
         res.status(500).json({ message: "Error during token creation", error });
       });
+  } else {
+    res.status(500).json({ message: "Error during token creation", error });
   }
 });
